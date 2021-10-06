@@ -1,10 +1,9 @@
 name: 'Font browser tests'
 description: 'Test font rendering on different browsers'
 inputs:
-  fonts_before:
-    description: 'Diff against a previous set of fonts'
-    required: false
-    default: ''
+  path:
+    description: 'path to fonts'
+    required: true
   pt_size:
     description: 'Set pt size of sample images'
     required: false
@@ -28,11 +27,11 @@ runs:
   - name: Gen Screenshots
     run: |
       chromedriver --url-base=/wd/hub &
-      python test.py
+      gftools gen-html proof ${{ inputs.path }} -pt {{ inputs.pt_size }} --imgs --selenium-screenshots  -o ./screenshots
     shell: bash
 
   - name: Create Artifacts
     uses: actions/upload-artifact@v2
     with:
       name: images
-      path: ./*.png
+      path: ./screenshots/img
