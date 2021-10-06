@@ -1,0 +1,36 @@
+name: 'Font browser tests'
+description: 'Test font rendering on different browsers'
+inputs:
+  fonts_before:
+    description: 'Diff against a previous set of fonts'
+    required: false
+    default: ''
+  pt_size:
+    description: 'Set pt size of sample images'
+    required: false
+    default: '14'
+runs:
+  using: "composite"
+  steps:
+  - name: Set up Python 3.9
+    uses: actions/setup-python@v2
+    with:
+      python-version: 3.9
+  - name: Install packages
+    run: |
+      pip install git+https://github.com/googlefonts/gftools/pull/420/head
+  - name: Setup Chrome
+    uses: browser-actions/setup-chrome@latest
+  - name: Setup Chrome Driver
+    uses: nanasess/setup-chromedriver@master
+
+  - name: Gen Screenshots
+    run: |
+      chromedriver --url-base=/wd/hub &
+      python test.py
+
+  - name: Create Artifacts
+    uses: actions/upload-artifact@v2
+    with:
+      name: images
+      path: ./*.png
