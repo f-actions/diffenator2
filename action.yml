@@ -16,21 +16,30 @@ runs:
     uses: actions/setup-python@v2
     with:
       python-version: 3.9
+    shell: bash
+
   - name: Install packages
     run: |
       pip install git+https://github.com/googlefonts/gftools/pull/420/head
+    shell: bash
+
   - name: Setup Chrome
     uses: browser-actions/setup-chrome@latest
+    shell: bash
+
   - name: Setup Chrome Driver
     uses: nanasess/setup-chromedriver@master
+    shell: bash
 
   - name: Gen Screenshots
     run: |
       chromedriver --url-base=/wd/hub &
       python test.py
+    shell: bash
 
   - name: Create Artifacts
     uses: actions/upload-artifact@v2
     with:
       name: images
       path: ./*.png
+    shell: bash
