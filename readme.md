@@ -16,11 +16,6 @@ jobs:
     steps:
         - uses: actions/checkout@v2
         - uses: m4rc1e/font-browser-tests-action
-        - uses: actions/upload-artifact@v2
-          if: always()
-          with:
-            name: Images
-            path: ./*.png
 ```
 
 
