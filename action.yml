@@ -27,7 +27,7 @@ runs:
   - name: Gen Screenshots
     run: |
       chromedriver --url-base=/wd/hub &
-      gftools gen-html proof ${{ inputs.path }} -pt {{ inputs.pt_size }} --imgs --selenium-screenshots  -o ./screenshots
+      gftools gen-html proof ${{ inputs.path }} -pt ${{ inputs.pt_size }} --imgs --selenium-screenshots  -o ./screenshots
     shell: bash
 
   - name: Create Artifacts
