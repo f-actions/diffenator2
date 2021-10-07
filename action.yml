@@ -26,10 +26,10 @@ runs:
 
   - name: Gen Screenshots
     run: |
-      export PYTHONIOENCODING=utf8
       chromedriver --url-base=/wd/hub &
       gftools gen-html proof ${{ inputs.path }} -pt ${{ inputs.pt_size }} --imgs --selenium-screenshots  -o ./screenshots
-    shell: bash
+    env:
+      PYTHONIOENCODING: "utf-8"
 
   - name: Create Artifacts
     uses: actions/upload-artifact@v2
