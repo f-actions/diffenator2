@@ -17,7 +17,7 @@ runs:
       python-version: 3.9
   - name: Install packages
     run: |
-      pip install pip install git+https://github.com/m4rc1e/tools.git@c6760d783d042c211f915ee7f84967b7c3e7cfc5
+      pip install pip install git+https://github.com/m4rc1e/tools.git@5df7d73980b20187d534429df26242646cd3f622
     shell: bash
   - name: Setup Chrome
     uses: browser-actions/setup-chrome@latest
@@ -27,7 +27,6 @@ runs:
   - name: Gen Screenshots
     run: |
       chromedriver --url-base=/wd/hub &
-      echo $PYTHONUTF8
       gftools gen-html proof ${{ inputs.path }} -pt ${{ inputs.pt_size }} --imgs --selenium-screenshots  -o ./screenshots
     env:
       PYTHONIOENCODING: 'utf-8'
