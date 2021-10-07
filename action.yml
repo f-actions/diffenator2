@@ -27,9 +27,11 @@ runs:
   - name: Gen Screenshots
     run: |
       chromedriver --url-base=/wd/hub &
+      echo $PYTHONUTF8
       gftools gen-html proof ${{ inputs.path }} -pt ${{ inputs.pt_size }} --imgs --selenium-screenshots  -o ./screenshots
     env:
-      PYTHONIOENCODING: "utf-8"
+      PYTHONIOENCODING: 'utf-8'
+      PYTHONUTF8: '1'
     shell: bash
 
   - name: Create Artifacts
