@@ -11,6 +11,7 @@ inputs:
   fonts_before:
     description: 'Diff against an earlier version of the fonts'
     required: false
+    default: 'none'
 runs:
   using: "composite"
   steps:
