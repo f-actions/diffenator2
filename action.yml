@@ -30,6 +30,7 @@ runs:
   - name: Gen Screenshots
     run: |
       chromedriver --url-base=/wd/hub &
+      python -c "print('hello')"
     env:
       PYTHONIOENCODING: 'utf-8'
       PYTHONUTF8: '1'
