@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 print("hello world")
 #"""
 #Script is too complicated to be a simple bash script.
