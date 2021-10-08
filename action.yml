@@ -31,7 +31,7 @@ runs:
   - name: Gen Screenshots
     run: |
       chromedriver --url-base=/wd/hub &
-      python $GITHUB_ACTION_PATH/test.py
+      python $GITHUB_ACTION_PATH/test.py ${{ inputs.path }} --pt_size ${{ inputs.pt_size }} ${{ inputs.fonts_before }} 
     env:
       PYTHONIOENCODING: 'utf-8'
       PYTHONUTF8: '1'
