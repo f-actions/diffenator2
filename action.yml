@@ -29,7 +29,7 @@ runs:
       python-version: 3.9
   - name: Install packages
     run: |
-      pip install git+https://github.com/m4rc1e/tools.git@b0b5a57c0bd58fbfcc51ea6c05c45017f37a7e19
+      pip install git+https://github.com/m4rc1e/tools.git@066f337691d1b65f12afeb98b2c887b1cd41c883
     shell: bash
   - name: Setup Chrome
     uses: browser-actions/setup-chrome@latest
