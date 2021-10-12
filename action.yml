@@ -1,8 +1,8 @@
 name: 'Font browser tests'
 description: 'Test font rendering on different browsers'
 inputs:
-  path:
-    description: 'path to fonts'
+  paths:
+    description: 'paths to directory fonts'
     required: true
   pt_size:
     description: 'Set pt size of sample images'
@@ -12,6 +12,10 @@ inputs:
     description: 'Diff against an earlier version of the fonts'
     required: false
     default: 'none'
+  out:
+    description: 'Output dir for images'
+    required: false
+    default: "screenshots"
   width:
     description: 'Width of diff images. Default is 1280px'
     required: false
@@ -42,7 +46,7 @@ runs:
   - name: Gen Screenshots
     run: |
       chromedriver --url-base=/wd/hub &
-      python $GITHUB_ACTION_PATH/test.py ${{ inputs.path }} --pt_size ${{ inputs.pt_size }} --fonts_before ${{ inputs.fonts_before }} 
+      python $GITHUB_ACTION_PATH/test.py ${{ inputs.path }} --pt_size ${{ inputs.pt_size }} --fonts_before ${{ inputs.fonts_before }} --out ${{ inputs.out }} 
     env:
       PYTHONIOENCODING: 'utf-8'
       PYTHONUTF8: '1'
@@ -52,4 +56,4 @@ runs:
     uses: actions/upload-artifact@v2
     with:
       name: images
-      path: ./screenshots/img
+      path: ${{ inputs.out }}
