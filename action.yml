@@ -35,7 +35,7 @@ runs:
   - name: Setup Firefox
     uses: browser-actions/setup-firefox@latest
     with:
-      firefox-version: 84.0
+      firefox-version: '84.0'
   - name: Setup Firefox Driver
     uses: browser-actions/setup-geckodriver@latest
 
