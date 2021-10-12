@@ -17,7 +17,7 @@ jobs:
         - uses: actions/checkout@v2
         - uses: m4rc1e/diffbrowsers-action@latest
           with:
-            path: ./fonts # Path to a directory of fonts
+            paths: ./fonts # Path to a directory of fonts
             pt_size: 15 # Change text pt size in html docs (Optional) 
             fonts_before: 'google-fonts' # Diff against previous fonts (Optional)
 ```
@@ -45,7 +45,7 @@ jobs:
           fetch-depth: 0
       - uses: m4rc1e/diffbrowsers-action@v0.0.34
         with:
-          path: ./fonts
+          paths: ./fonts
           pt_size: 15
           fonts_before: google-fonts
           width: 1280
