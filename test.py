@@ -15,6 +15,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("path")
 parser.add_argument("--pt_size", default=16)
 parser.add_argument("--fonts_before")
+parser.add_argument("--width", type=int, default=1280)
 args = parser.parse_args()
 
 
@@ -47,4 +48,4 @@ else:
 
 
 html.build_pages(pt_size=args.pt_size)
-html.save_imgs()
+html.save_imgs(width=args.width)

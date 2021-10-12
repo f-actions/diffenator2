@@ -12,6 +12,10 @@ inputs:
     description: 'Diff against an earlier version of the fonts'
     required: false
     default: 'none'
+  width:
+    description: 'Width of diff images. Default is 1280px'
+    required: false
+    default: 1280
 runs:
   using: "composite"
   steps:
@@ -21,12 +25,17 @@ runs:
       python-version: 3.9
   - name: Install packages
     run: |
-      pip install pip install git+https://github.com/m4rc1e/tools.git@6b76b11dfd79168002b9be113085b87ac43f92c1
+      pip install git+https://github.com/m4rc1e/tools.git@b0b5a57c0bd58fbfcc51ea6c05c45017f37a7e19
     shell: bash
   - name: Setup Chrome
     uses: browser-actions/setup-chrome@latest
   - name: Setup Chrome Driver
     uses: nanasess/setup-chromedriver@master
+
+  - name: Setup Firefox
+    uses: browser-actions/setup-firefox@latest
+  - name: Setup Firefox Driver
+    uses: browser-actions/setup-geckodriver@latest
 
   - name: Gen Screenshots
     run: |
