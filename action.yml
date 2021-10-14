@@ -50,7 +50,7 @@ runs:
   - name: Gen Screenshots
     run: |
       chromedriver --url-base=/wd/hub &
-      python $GITHUB_ACTION_PATH/test.py --paths ${{ inputs.paths }} --pt_size ${{ inputs.pt_size }} --fonts_before ${{ inputs.fonts_before }} --out ${{ inputs.out }} 
+      python $GITHUB_ACTION_PATH/test.py --paths ${{ inputs.paths }} --pt_size ${{ inputs.pt_size }} --fonts_before ${{ inputs.fonts_before }} --out ${{ inputs.out }} --template_dir ${{ inputs.template_dir }}
     env:
       PYTHONIOENCODING: 'utf-8'
       PYTHONUTF8: '1'
