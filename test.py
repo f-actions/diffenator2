@@ -8,7 +8,7 @@ from gftools.html import HtmlProof, HtmlDiff
 from gftools.utils import font_familyname, download_family_from_Google_Fonts
 from glob import glob
 import argparse
-
+from pkg_resources import resource_filename
 
 
 parser = argparse.ArgumentParser()
@@ -17,7 +17,11 @@ parser.add_argument("--pt_size", default=16)
 parser.add_argument("--fonts_before", default="none")
 parser.add_argument("--width", type=int, default=1280)
 parser.add_argument("--out", default="screenshots")
+parser.add_argument("--template_dir", default="none")
 args = parser.parse_args()
+
+
+template_dir = args.template_dir if args.template_dir != "none" else resource_filename("gftools", "templates")
 
 os.mkdir(args.out)
 
@@ -32,7 +36,8 @@ for font_dir in args.paths:
         html = HtmlProof(
             fonts,
             out=out,
-            selenium_screenshots=True
+            template_dir=template_dir,
+            selenium_screenshots=True,
         )
     else:
         # User wants to diff against Google Fonts
@@ -46,6 +51,7 @@ for font_dir in args.paths:
             fonts_before,
             fonts,
             out=out,
+            template_dir=template_dir,
             selenium_screenshots=True
         )
 

@@ -20,6 +20,10 @@ inputs:
     description: 'Width of diff images. Default is 1280px'
     required: false
     default: 1280
+  template-dir:
+    description: 'Directory to custom html test pages. If no directory is provided, use gftools/templates'
+    required: false
+    default: 'none'
 runs:
   using: "composite"
   steps:
