@@ -33,7 +33,7 @@ runs:
       python-version: 3.9
   - name: Install packages
     run: |
-      pip install git+https://github.com/m4rc1e/tools.git@214e3117316d5051d7dbe4261f3fcc3abad63083
+      pip install git+https://github.com/m4rc1e/diffenator2
     shell: bash
   - name: Setup Chrome
     uses: browser-actions/setup-chrome@latest
