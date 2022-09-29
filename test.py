@@ -15,18 +15,20 @@ from diffenator.utils import (
 parser = argparse.ArgumentParser()
 parser.add_argument("--paths", nargs="+", required=True)
 parser.add_argument("--fonts_before", default="none")
-parser.add_argument("--out", default=os.path.abspath("screenshots"))
+parser.add_argument("--out", default="screenshots")
 args = parser.parse_args()
 
+out = os.path.abspath(args.out)
 
-os.mkdir(args.out)
+
+os.mkdir(out)
 
 
 for font_dir in args.paths:
-    fonts = glob(os.path.join(font_dir, "*.ttf"))
+    fonts = glob(os.path.abspath(os.path.join(font_dir, "*.ttf")))
     ttFonts = [TTFont(f) for f in fonts]
     family_name = ttFonts[0]["name"].getBestFamilyName()
-    out = os.path.join(args.out, family_name)
+    out = os.path.join(out, family_name)
 
     # User just wants proofs
     if args.fonts_before == "none":
