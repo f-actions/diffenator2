@@ -15,7 +15,7 @@ jobs:
     name: Check fonts on different browsers
     steps:
         - uses: actions/checkout@v2
-        - uses: m4rc1e/diffbrowsers-action@latest
+        - uses: m4rc1e/font-browser-tests-action@latest
           with:
             paths: ./fonts # Path to a directory of fonts
             pt_size: 15 # Change text pt size in html docs (Optional) 
@@ -43,23 +43,10 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-      - uses: m4rc1e/diffbrowsers-action@v0.0.34
+      - uses: m4rc1e/font-browser-tests-action@latest
         with:
           paths: ./fonts
           pt_size: 15
           fonts_before: google-fonts
           width: 1280
 ```
-
-
-Use `upload-artifact` to save the images
-
-```YAML
-- name: Create Artifacts
-  uses: actions/upload-artifact@v2
-  with:
-    name: images
-    path: ./screenshots/img
-```
-
-
