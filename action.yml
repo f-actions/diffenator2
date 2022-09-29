@@ -41,6 +41,7 @@ runs:
       chromedriver --url-base=/wd/hub &
       python $GITHUB_ACTION_PATH/test.py --paths ${{ inputs.paths }} --fonts_before ${{ inputs.fonts_before }} --out ${{ inputs.out }}
       ls
+      ls screenshots/
     env:
       PYTHONIOENCODING: 'utf-8'
       PYTHONUTF8: '1'
@@ -50,4 +51,4 @@ runs:
     uses: actions/upload-artifact@v2
     with:
       name: images
-      path: ${{ inputs.out }}
+      path: screenshots/ 
