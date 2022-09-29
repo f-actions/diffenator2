@@ -37,6 +37,7 @@ runs:
 
   - name: Gen Screenshots
     run: |
+      python -m youseedee 0x078A
       chromedriver --url-base=/wd/hub &
       python $GITHUB_ACTION_PATH/test.py --paths ${{ inputs.paths }} --fonts_before ${{ inputs.fonts_before }} --out ${{ inputs.out }}
     env:
