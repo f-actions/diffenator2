@@ -49,6 +49,4 @@ for font_dir in args.paths:
         ttFonts_before = [
             TTFont(f) for f in glob(os.path.join(fonts_before_fp, "*.ttf"))
         ]
-        import pdb
-        pdb.set_trace()
         run_diffing_tools(ttFonts_before, ttFonts, out=out, imgs=True)
