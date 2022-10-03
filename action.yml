@@ -14,6 +14,8 @@ inputs:
     default: "screenshots"
 runs:
   using: "composite"
+  env:
+    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   steps:
   - name: Set up Python 3.9
     uses: actions/setup-python@v2
@@ -29,9 +31,10 @@ runs:
     uses: nanasess/setup-chromedriver@master
 
   - name: Setup Firefox
-    uses: browser-actions/setup-firefox@latest
+    uses: m4rc1e/setup-firefox@latest
     with:
       firefox-version: '84.0'
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   - name: Setup Firefox Driver
     uses: browser-actions/setup-geckodriver@latest
 
@@ -40,8 +43,6 @@ runs:
       python -m youseedee 0x078A
       chromedriver --url-base=/wd/hub &
       python $GITHUB_ACTION_PATH/test.py --paths ${{ inputs.paths }} --fonts_before ${{ inputs.fonts_before }} --out ${{ inputs.out }}
-      ls
-      ls screenshots/
     env:
       PYTHONIOENCODING: 'utf-8'
       PYTHONUTF8: '1'
