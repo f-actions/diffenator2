@@ -3,6 +3,9 @@ permissions:
   contents: read
 description: 'Test font rendering on different browsers'
 inputs:
+  github-token:
+    description: 'github token'
+    required: true
   paths:
     description: 'paths to directory fonts'
     required: true
@@ -34,7 +37,7 @@ runs:
     uses: m4rc1e/setup-firefox@latest
     with:
       firefox-version: '84.0'
-      github-token: ${{ secrets.GITHUB_TOKEN }}
+      github-token: ${{ inputs.github-token }}
 
   - name: Gen Screenshots
     run: |
