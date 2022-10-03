@@ -30,9 +30,11 @@ runs:
 
   - name: Setup Firefox
     uses: m4rc1e/setup-firefox@latest
+    env:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
     with:
       firefox-version: '84.0'
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      github-token: ${{ env.github-token }}
   - name: Setup Firefox Driver
     uses: browser-actions/setup-geckodriver@latest
 
