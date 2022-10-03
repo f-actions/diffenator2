@@ -36,7 +36,7 @@ runs:
   - name: Setup Firefox
     uses: m4rc1e/setup-geckodriver@v0.0.1
     with:
-      firefox-version: '84.0'
+      geckodriver-version: '84.0'
       github-token: ${{ inputs.github-token }}
 
   - name: Gen Screenshots
