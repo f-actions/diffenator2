@@ -1,4 +1,6 @@
 name: 'Font browser tests'
+permissions:
+  contents: read
 description: 'Test font rendering on different browsers'
 inputs:
   paths:
@@ -30,13 +32,9 @@ runs:
 
   - name: Setup Firefox
     uses: m4rc1e/setup-firefox@latest
-    env:
-      github-token: ${{ secrets.GITHUB_TOKEN }}
     with:
       firefox-version: '84.0'
-      github-token: ${{ env.github-token }}
-  - name: Setup Firefox Driver
-    uses: browser-actions/setup-geckodriver@latest
+      github-token: ${{ secrets.GITHUB_TOKEN }}
 
   - name: Gen Screenshots
     run: |
