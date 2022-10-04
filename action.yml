@@ -2,9 +2,6 @@ name: 'Font browser tests'
 
 description: 'Test font rendering on different browsers'
 inputs:
-  github-token:
-    description: 'github token'
-    required: true
   paths:
     description: 'paths to directory fonts'
     required: true
@@ -38,8 +35,6 @@ runs:
       firefox-version: '84.0'
   - name: Setup Firefox Driver
     uses: m4rc1e/setup-geckodriver@master
-    with:
-      github-token: "${{ inputs.github-token }}"
 
   - name: Gen Screenshots
     run: |
