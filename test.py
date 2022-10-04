@@ -7,7 +7,7 @@ from glob import glob
 import argparse
 from diffenator import run_proofing_tools, run_diffing_tools
 from diffenator.utils import (
-    download_googlefonts_release_archive,
+    download_google_fonts_family,
     download_latest_github_release_archive,
 )
 
@@ -37,18 +37,15 @@ for font_dir in args.paths:
         # User wants to diff against Google Fonts
         fonts_before_fp = "fonts_before"
         if args.fonts_before == "google-fonts":
-            gf_archive = download_googlefonts_release_archive(
-                family_name, "fonts_before"
-            )
-        else:
-            user, repo = args.fonts_before.split("/")
-            gf_archive = download_latest_github_release_archive(
-                user,
-                repo,
-                fonts_before_fp,
-                os.environ["GITHUB_TOKEN"] or os.environ["GH_TOKEN"],
-            )
-        ttFonts_before = [
-            TTFont(f) for f in glob(os.path.join(fonts_before_fp, "*.ttf"))
-        ]
+            fonts_before = download_google_fonts_family(family_name, "fonts_before")
+## TODO bring this back
+#        else:
+#            user, repo = args.fonts_before.split("/")
+#            gf_archive = download_latest_github_release_archive(
+#                user,
+#                repo,
+#                fonts_before_fp,
+#                os.environ["GITHUB_TOKEN"] or os.environ["GH_TOKEN"],
+#            )
+        ttFonts_before = [TTFont(os.path.abspath(f)) for f in fonts_before]
         run_diffing_tools(ttFonts_before, ttFonts, out=out, imgs=True)
