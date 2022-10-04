@@ -1,6 +1,5 @@
 name: 'Font browser tests'
-permissions:
-  contents: read
+
 description: 'Test font rendering on different browsers'
 inputs:
   github-token:
