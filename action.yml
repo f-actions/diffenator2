@@ -40,7 +40,7 @@ runs:
   - name: Setup Firefox Driver
     uses: m4rc1e/setup-geckodriver@master
     with:
-      github-token: ${{ secrets.GITHUB_TOKEN }}
+      github-token: ${{ inputs.github-token }}
 
   - name: Gen Screenshots
     run: |
