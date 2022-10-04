@@ -28,7 +28,7 @@ for font_dir in args.paths:
     fonts = glob(os.path.abspath(os.path.join(font_dir, "*.ttf")))
     ttFonts = [TTFont(f) for f in fonts]
     family_name = ttFonts[0]["name"].getBestFamilyName()
-    out = os.path.join(out, family_name)
+    out = os.path.join(out, family_name.replace(" ", "-"))
 
     # User just wants proofs
     if args.fonts_before == "none":
