@@ -34,9 +34,12 @@ runs:
     uses: nanasess/setup-chromedriver@master
 
   - name: Setup Firefox
-    uses: m4rc1e/setup-geckodriver@v0.0.1
+    uses: browser-actions/setup-firefox@latest
     with:
-      geckodriver-version: '84.0'
+      firefox-version: '84.0'
+  - name: Setup Firefox Driver
+    uses: m4rc1e/setup-geckodriver@master
+    with:
       github-token: ${{ inputs.github-token }}
 
   - name: Gen Screenshots
