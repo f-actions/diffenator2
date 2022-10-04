@@ -39,10 +39,8 @@ runs:
       firefox-version: '84.0'
   - name: Setup Firefox Driver
     uses: m4rc1e/setup-geckodriver@master
-    env:
-      GITHUB_TOKEN: ${{ inputs.github-token }}
     with:
-      github-token: ${{ env.GITHUB_TOKEN }}
+      github-token: ${{ secrets.GITHUB_TOKEN }}
 
   - name: Gen Screenshots
     run: |
