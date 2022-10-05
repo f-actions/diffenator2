@@ -26,7 +26,7 @@ os.mkdir(out)
 
 for font_dir in args.paths:
     fonts = glob(os.path.abspath(os.path.join(font_dir, "*.ttf")))
-    ttFonts = [TTFont(f) for f in fonts]
+    ttFonts = [TTFont(os.path.abspath(f)) for f in fonts]
     family_name = ttFonts[0]["name"].getBestFamilyName()
     out = os.path.join(out, family_name.replace(" ", "-"))
 
@@ -48,4 +48,4 @@ for font_dir in args.paths:
 #                os.environ["GITHUB_TOKEN"] or os.environ["GH_TOKEN"],
 #            )
         ttFonts_before = [TTFont(os.path.abspath(f)) for f in fonts_before]
-        run_diffing_tools(ttFonts_before, ttFonts, out=out, imgs=True)
+        run_diffing_tools(ttFonts_before, ttFonts, out=os.path.abspath(out), imgs=True)
