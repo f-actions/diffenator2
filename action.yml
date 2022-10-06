@@ -23,6 +23,7 @@ runs:
   - name: Install packages
     run: |
       pip install git+https://github.com/m4rc1e/diffenator2
+    shell: bash
   - name: Setup Chrome
     uses: browser-actions/setup-chrome@latest
   - name: Setup Chrome Driver
@@ -43,6 +44,7 @@ runs:
     env:
       PYTHONIOENCODING: 'utf-8'
       PYTHONUTF8: '1'
+    shell: bash
 
   - name: Create Artifacts
     uses: actions/upload-artifact@v2
