@@ -20,6 +20,7 @@ jobs:
         - uses: actions/checkout@v2
         - uses: m4rc1e/font-browser-tests-action@latest
           with:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
             path: "./fonts/*.ttf"
 ```
 
@@ -36,6 +37,7 @@ jobs:
         - uses: actions/checkout@v2
         - uses: m4rc1e/font-browser-tests-action@latest
           with:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
             path: "./fonts/*.ttf"
             fetch-before: "googlefonts"
             path-before: "*.ttf"
@@ -54,6 +56,7 @@ jobs:
         - uses: actions/checkout@v2
         - uses: m4rc1e/font-browser-tests-action@latest
           with:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
             path: "./gulzar/fonts/*.ttf"
             fetch-before: "github-release"
             repo: "googlefonts/gulzar"
@@ -83,6 +86,7 @@ jobs:
           fetch-depth: 0
       - uses: m4rc1e/font-browser-tests-action@latest
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           paths: "./fonts"
           fonts_before: "googlefonts"
 ```
