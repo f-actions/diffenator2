@@ -2,13 +2,18 @@ name: 'Font browser tests'
 
 description: 'Test font rendering on different browsers'
 inputs:
-  paths:
-    description: 'paths to directory fonts'
+  path:
+    description: 'path to fonts'
     required: true
-  fonts_before:
-    description: 'Diff against an earlier version of the fonts'
-    required: false
-    default: 'none'
+  fetch_before:
+    description: 'Fetch method for before fonts can be "googlefonts" or "github-release"'
+    default: ""
+  repo:
+    description: "if fetch_before is github-release, specify username/repo e.g googlefonts/gulzar"
+    default: ""
+  path_before:
+    description: 'path to fonts before'
+    default: ""
   out:
     description: 'Output dir for images'
     required: false

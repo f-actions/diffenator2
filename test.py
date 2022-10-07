@@ -8,44 +8,49 @@ import argparse
 from diffenator import run_proofing_tools, run_diffing_tools
 from diffenator.utils import (
     download_google_fonts_family,
-    download_latest_github_release_archive,
+    download_latest_github_release,
 )
+import sys
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--paths", nargs="+", required=True)
-parser.add_argument("--fonts_before", default="none")
+parser.add_argument("--path", required=True)
+
+parser.add_argument("--fetch-before", choices=("", "googlefonts", "github-release"), default="")
+parser.add_argument("--repo", default="")
+
+parser.add_argument("--path-before", default="")
+
 parser.add_argument("--out", default="screenshots")
 args = parser.parse_args()
 
 out = os.path.abspath(args.out)
+if not os.path.exists(out):
+    os.mkdir(out)
 
 
-os.mkdir(out)
+fonts = glob(os.path.abspath(args.path))
+ttFonts = [TTFont(os.path.abspath(f)) for f in fonts]
+family_name = ttFonts[0]["name"].getBestFamilyName()
+out = os.path.join(out, family_name.replace(" ", "-"))
 
+# User just wants proofs
+if not args.path_before:
+    run_proofing_tools(ttFonts, out=out, imgs=True)
+    sys.exit(0)
 
-for font_dir in args.paths:
-    fonts = glob(os.path.abspath(os.path.join(font_dir, "*.ttf")))
-    ttFonts = [TTFont(os.path.abspath(f)) for f in fonts]
-    family_name = ttFonts[0]["name"].getBestFamilyName()
-    out = os.path.join(out, family_name.replace(" ", "-"))
+# get fonts before
+if args.path_before and not args.fetch_before:
+    raise ValueError("--fetch-before flag required since path_before is provided")
 
-    # User just wants proofs
-    if args.fonts_before == "none":
-        run_proofing_tools(ttFonts, out=out, imgs=True)
-    else:
-        # User wants to diff against Google Fonts
-        fonts_before_fp = "fonts_before"
-        if args.fonts_before == "google-fonts":
-            fonts_before = download_google_fonts_family(family_name, "fonts_before")
-## TODO bring this back
-#        else:
-#            user, repo = args.fonts_before.split("/")
-#            gf_archive = download_latest_github_release_archive(
-#                user,
-#                repo,
-#                fonts_before_fp,
-#                os.environ["GITHUB_TOKEN"] or os.environ["GH_TOKEN"],
-#            )
-        ttFonts_before = [TTFont(os.path.abspath(f)) for f in fonts_before]
-        run_diffing_tools(ttFonts_before, ttFonts, out=os.path.abspath(out), imgs=True)
+if args.fetch_before == "googlefonts":
+    files_before = download_google_fonts_family(family_name, "files_before")
+elif args.fetch_before == "github-release":
+    if not args.repo:
+        raise ValueError("--repo flag required e.g 'googlefonts/gulzar'")
+    user, repo = args.repo.split("/")
+    files_before = download_latest_github_release(user, repo, "files_before")
+fonts_before = glob(os.path.abspath(os.path.join("files_before", args.path_before)))
+ttFonts_before = [TTFont(os.path.abspath(f)) for f in fonts_before]
+
+run_diffing_tools(ttFonts_before, ttFonts, out=os.path.abspath(out), imgs=True)
