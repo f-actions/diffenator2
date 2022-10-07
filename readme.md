@@ -20,7 +20,7 @@ jobs:
         - uses: actions/checkout@v2
         - uses: m4rc1e/font-browser-tests-action@latest
           with:
-            path: ./fonts/*.ttf
+            path: "./fonts/*.ttf"
 ```
 
 Diff fonts against Google Fonts:
@@ -36,9 +36,9 @@ jobs:
         - uses: actions/checkout@v2
         - uses: m4rc1e/font-browser-tests-action@latest
           with:
-            path: ./fonts/*.ttf
-            fetch-before: googlefonts
-            path-before: *.ttf
+            path: "./fonts/*.ttf"
+            fetch-before: "googlefonts"
+            path-before: "*.ttf"
 ```
 
 Diff fonts against a latest upstream release:
@@ -54,10 +54,10 @@ jobs:
         - uses: actions/checkout@v2
         - uses: m4rc1e/font-browser-tests-action@latest
           with:
-            path: ./gulzar/fonts/*.ttf
-            fetch-before: github-release
-            repo: googlefonts/gulzar
-            path-before: *.ttf
+            path: "./gulzar/fonts/*.ttf"
+            fetch-before: "github-release"
+            repo: "googlefonts/gulzar"
+            path-before: "*.ttf"
 ```
 
 Want to test different operating systems? use a matrix.
@@ -83,10 +83,8 @@ jobs:
           fetch-depth: 0
       - uses: m4rc1e/font-browser-tests-action@latest
         with:
-          paths: ./fonts
-          pt_size: 15
-          fonts_before: google-fonts
-          width: 1280
+          paths: "./fonts"
+          fonts_before: "googlefonts"
 ```
 
 Examples:

@@ -2,6 +2,9 @@ name: 'Font browser tests'
 
 description: 'Test font rendering on different browsers'
 inputs:
+  github-token:
+    description: 'github token'
+    required: true
   path:
     description: 'path to fonts'
     required: true
@@ -46,7 +49,7 @@ runs:
       python -m youseedee 0x078A
       chromedriver --url-base=/wd/hub &
       python $GITHUB_ACTION_PATH/test.py \
-        --github-token ${{ secrets.GITHUB_TOKEN }}
+        --github-token ${{ inputs.github-token }} \
         --path ${{ inputs.path }} \
         --fetch-before ${{ inputs.fetch-before }} \
         --repo ${{ inputs.repo }} \

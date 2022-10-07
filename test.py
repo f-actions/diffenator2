@@ -14,7 +14,7 @@ import sys
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--github-token")
+parser.add_argument("--github-token", required=True)
 parser.add_argument("--path", required=True)
 
 parser.add_argument("--fetch-before", choices=("", "googlefonts", "github-release"), default="")
