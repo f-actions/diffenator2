@@ -15,7 +15,7 @@ import sys
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--github-token", required=True)
-parser.add_argument("--path", required=True)
+parser.add_argument("--path", required=True, nargs="+")
 
 parser.add_argument("--fetch-before", choices=("", "googlefonts", "github-release"), default="")
 parser.add_argument("--repo", default="")
@@ -30,8 +30,8 @@ if not os.path.exists(out):
     os.mkdir(out)
 
 
-fonts = glob(os.path.abspath(args.path))
-ttFonts = [TTFont(os.path.abspath(f)) for f in fonts]
+
+ttFonts = [TTFont(os.path.abspath(f)) for f in args.path]
 family_name = ttFonts[0]["name"].getBestFamilyName()
 out = os.path.join(out, family_name.replace(" ", "-"))
 
