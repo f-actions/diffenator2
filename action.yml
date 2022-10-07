@@ -46,6 +46,7 @@ runs:
       python -m youseedee 0x078A
       chromedriver --url-base=/wd/hub &
       python $GITHUB_ACTION_PATH/test.py \
+        --github-token ${{ secrets.GITHUB_TOKEN }}
         --path ${{ inputs.path }} \
         --fetch-before ${{ inputs.fetch-before }} \
         --repo ${{ inputs.repo }} \

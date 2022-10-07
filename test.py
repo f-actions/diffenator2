@@ -14,6 +14,7 @@ import sys
 
 
 parser = argparse.ArgumentParser()
+parser.add_argument("--github-token")
 parser.add_argument("--path", required=True)
 
 parser.add_argument("--fetch-before", choices=("", "googlefonts", "github-release"), default="")
@@ -49,7 +50,7 @@ elif args.fetch_before == "github-release":
     if not args.repo:
         raise ValueError("--repo flag required e.g 'googlefonts/gulzar'")
     user, repo = args.repo.split("/")
-    files_before = download_latest_github_release(user, repo, "files_before")
+    files_before = download_latest_github_release(user, repo, "files_before", args.github_token)
 fonts_before = glob(os.path.abspath(os.path.join("files_before", args.path_before)))
 ttFonts_before = [TTFont(os.path.abspath(f)) for f in fonts_before]
 
