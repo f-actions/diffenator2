@@ -1,10 +1,13 @@
-# Diffbrowsers Action
+# Font Tester
 
-Test how fonts render on different browsers using `gftools gen-html`
+Test fonts using the Google Fonts font testing tools
 
 ## Usage
 
 Create a `.github/workflows/test.yml` with the following contents:
+
+
+Run proofing tools:
 
 ```YAML
 on: [push]
@@ -17,9 +20,44 @@ jobs:
         - uses: actions/checkout@v2
         - uses: m4rc1e/font-browser-tests-action@latest
           with:
-            paths: ./fonts # Path to a directory of fonts
-            pt_size: 15 # Change text pt size in html docs (Optional) 
-            fonts_before: 'google-fonts' # Diff against previous fonts (Optional)
+            path: ./fonts/*.ttf
+```
+
+Diff fonts against Google Fonts:
+
+```YAML
+on: [push]
+
+jobs:
+  font-render:
+    runs-on: ubuntu-latest
+    name: Check fonts on different browsers
+    steps:
+        - uses: actions/checkout@v2
+        - uses: m4rc1e/font-browser-tests-action@latest
+          with:
+            path: ./fonts/*.ttf
+            fetch-before: googlefonts
+            path-before: *.ttf
+```
+
+Diff fonts against a latest upstream release:
+
+```YAML
+on: [push]
+
+jobs:
+  font-render:
+    runs-on: ubuntu-latest
+    name: Check fonts on different browsers
+    steps:
+        - uses: actions/checkout@v2
+        - uses: m4rc1e/font-browser-tests-action@latest
+          with:
+            path: ./gulzar/fonts/*.ttf
+            fetch-before: github-release
+            repo: googlefonts/gulzar
+            path-before: *.ttf
 ```
 
 Want to test different operating systems? use a matrix.
@@ -50,3 +88,6 @@ jobs:
           fonts_before: google-fonts
           width: 1280
 ```
+
+Examples:
+TODO
