@@ -10,13 +10,13 @@ inputs:
     required: true
   fetch-before:
     description: 'Fetch method for before fonts can be "googlefonts" or "github-release"'
-    default: ""
+    default: "none"
   repo:
     description: "if fetch_before is github-release, specify username/repo e.g googlefonts/gulzar"
-    default: ""
+    default: "none"
   path-before:
     description: 'path to fonts before which reside inside the fetch dir'
-    default: ""
+    default: "none"
   out:
     description: 'Output dir'
     required: false
