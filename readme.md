@@ -1,6 +1,6 @@
 # Font Tester
 
-Test fonts using the Google Fonts font testing tools
+Test fonts using diffenator2.
 
 ## Usage
 
