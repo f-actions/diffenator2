@@ -18,7 +18,7 @@ Test fonts using diffenator2.
     # Required: True
     path: ''
 
-    # Method to fetch previous fonts for comparison. Choose from
+    # Method to fetch older fonts for comparison. Choose from
     # 'googlefonts' or 'github-release'.
     # Required: False
     fetch-before: ''
@@ -26,6 +26,7 @@ Test fonts using diffenator2.
     # The 'username/repo' string if fetch-before is set to 'github-release'
     # e.g `googlefonts/gulzar`.
     # Required: False
+    repo: ''
 
     # Font path to older fonts to compare against e.g `fonts_before/*.ttf.
     path-before: ''
