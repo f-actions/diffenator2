@@ -17,7 +17,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--github-token", required=True)
 parser.add_argument("--path", required=True, nargs="+")
 
-parser.add_argument("--fetch-before", choices=("none", "googlefonts", "github-release"), default="none")
+parser.add_argument(
+    "--fetch-before", choices=("none", "googlefonts", "github-release"), default="none"
+)
 parser.add_argument("--repo", default="none")
 
 parser.add_argument("--path-before", default="none")
@@ -31,7 +33,6 @@ args = parser.parse_args()
 out = os.path.abspath(args.out)
 if not os.path.exists(out):
     os.mkdir(out)
-
 
 
 ttFonts = [TTFont(os.path.abspath(f)) for f in args.path]
@@ -53,10 +54,19 @@ elif args.fetch_before == "github-release":
     if args.repo == "none":
         raise ValueError("--repo flag required e.g 'googlefonts/gulzar'")
     user, repo = args.repo.split("/")
-    files_before = download_latest_github_release(user, repo, "files_before", args.github_token)
+    files_before = download_latest_github_release(
+        user, repo, "files_before", args.github_token
+    )
 fonts_before = glob(os.path.abspath(os.path.join("files_before", args.path_before)))
 ttFonts_before = [TTFont(os.path.abspath(f)) for f in fonts_before]
 
 args.diffbrowsers = True if args.diffbrowsers == "true" else False
 args.diffenator = True if args.diffenator == "true" else False
-run_diffing_tools(ttFonts_before, ttFonts, diffenator=args.diffenator, diffbrowsers=args.diffbrowsers, out=os.path.abspath(out), imgs=True)
+run_diffing_tools(
+    ttFonts_before,
+    ttFonts,
+    diffenator=args.diffenator,
+    diffbrowsers=args.diffbrowsers,
+    out=os.path.abspath(out),
+    imgs=True,
+)
