@@ -20,7 +20,7 @@ inputs:
   out:
     description: 'Output dir'
     required: false
-    default: "browser-tests"
+    default: "test_results"
   run-diffenator:
     description: 'Run fontdiffenator'
     default: false

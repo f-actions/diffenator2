@@ -4,8 +4,46 @@ Test fonts using the Google Fonts font testing tools
 
 ## Usage
 
-Create a `.github/workflows/test.yml` with the following contents:
+```YAML
+- uses: googlefonts/test-fonts-action@main
+  with:
 
+    # Personal access token (PAT). This is required in order to download fonts from upstream font projects. Use ${{ secrets.GITHUB_TOKEN }}
+    # Required: True
+    github-token: ''
+
+    # Path to fonts which need to be tested. Wildcards are possible e.g `fonts/variable/*.ttf`
+    # Required: True
+    path: ''
+
+    # Method to fetch previous fonts for comparison. Choose from 'googlefonts' or 'github-release'.
+    # Required: False
+    fetch-before: ''
+
+    # The 'username/repo' string if fetch-before is set to 'github-release' e.g `googlefonts/gulzar`.
+    # Required: False
+
+    # Font path to older fonts to compare against e.g `fonts_before/*.ttf.
+    path-before: ''
+
+    # Output directory
+    # Default: test_results
+    # Required: False
+    out: ''
+
+    # Run diffenator
+    # Default: False
+    run-diffenator: bool
+
+    # Run diffbrowsers
+    # Default: False
+    run-diffbrowsers: bool
+
+```
+
+
+
+## Examples
 
 Run proofing tools:
 
@@ -41,6 +79,8 @@ jobs:
             path: "./fonts/*.ttf"
             fetch-before: "googlefonts"
             path-before: "*.ttf"
+            run-diffenator: true
+            run-diffbrowsers: true
 ```
 
 Diff fonts against a latest upstream release:
@@ -61,9 +101,11 @@ jobs:
             fetch-before: "github-release"
             repo: "googlefonts/gulzar"
             path-before: "*.ttf"
+            run-diffenator: true
+            run-diffbrowsers: true
 ```
 
-Want to test different operating systems? use a matrix.
+Generating screenshots on Mac, Win and Linux
 
 ```YAML
 name: Test screenshots
@@ -89,7 +131,8 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           paths: "./fonts"
           fonts_before: "googlefonts"
+          run-diffenator: false
+          run-diffbrowsers: true
 ```
 
-Examples:
-TODO
+For a complete project see https://github.com/m4rc1e/mavenproFont/blob/main/.github/workflows/build.yaml. This project will first build the fonts and then compare them against the latest release on Google Fonts. It uses a platform matrix to render browser screenshots for Win, Mac and Linux. It also runs diffenator on the latest Linux as a seperate job. This setup should be suitable for most font projects.
