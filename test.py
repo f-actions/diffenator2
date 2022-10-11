@@ -22,6 +22,9 @@ parser.add_argument("--repo", default="none")
 
 parser.add_argument("--path-before", default="none")
 
+parser.add_argument("--diffenator", default="false")
+parser.add_argument("--diffbrowsers", default="false")
+
 parser.add_argument("--out", default="screenshots")
 args = parser.parse_args()
 
@@ -36,7 +39,7 @@ family_name = ttFonts[0]["name"].getBestFamilyName()
 out = os.path.join(out, family_name.replace(" ", "-"))
 
 # User just wants proofs
-if args.path_before != "none":
+if args.path_before == "none":
     run_proofing_tools(ttFonts, out=out, imgs=True)
     sys.exit(0)
 
@@ -54,4 +57,6 @@ elif args.fetch_before == "github-release":
 fonts_before = glob(os.path.abspath(os.path.join("files_before", args.path_before)))
 ttFonts_before = [TTFont(os.path.abspath(f)) for f in fonts_before]
 
-run_diffing_tools(ttFonts_before, ttFonts, out=os.path.abspath(out), imgs=True)
+args.diffbrowsers = True if args.diffbrowsers == "true" else False
+args.diffenator = True if args.diffenator == "true" else False
+run_diffing_tools(ttFonts_before, ttFonts, diffenator=args.diffenator, diffbrowsers=args.diffbrowsers, out=os.path.abspath(out), imgs=True)

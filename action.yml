@@ -21,6 +21,12 @@ inputs:
     description: 'Output dir'
     required: false
     default: "browser-tests"
+  run-diffenator:
+    description: 'Run fontdiffenator'
+    default: false
+  run-diffbrowsers:
+    description: 'Run diffbrowsers'
+    default: false
 runs:
   using: "composite"
   steps:
@@ -54,7 +60,9 @@ runs:
         --fetch-before ${{ inputs.fetch-before }} \
         --repo ${{ inputs.repo }} \
         --path-before ${{ inputs.path-before }} \
-        --out ${{ inputs.out }}
+        --out ${{ inputs.out }} \
+        --diffenator ${{ inputs.run-diffenator }} \
+        --diffbrowsers ${{ inputs.run-diffbrowsers }}
     env:
       PYTHONIOENCODING: 'utf-8'
       PYTHONUTF8: '1'
