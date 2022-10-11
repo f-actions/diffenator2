@@ -8,19 +8,23 @@ Test fonts using the Google Fonts font testing tools
 - uses: googlefonts/test-fonts-action@main
   with:
 
-    # Personal access token (PAT). This is required in order to download fonts from upstream font projects. Use ${{ secrets.GITHUB_TOKEN }}
+    # Personal access token (PAT). This is required in order to download
+    # fonts from upstream font projects. Use ${{ secrets.GITHUB_TOKEN }}
     # Required: True
     github-token: ''
 
-    # Path to fonts which need to be tested. Wildcards are possible e.g `fonts/variable/*.ttf`
+    # Path to fonts which need to be tested. Wildcards are possible e.g
+    # `fonts/variable/*.ttf`
     # Required: True
     path: ''
 
-    # Method to fetch previous fonts for comparison. Choose from 'googlefonts' or 'github-release'.
+    # Method to fetch previous fonts for comparison. Choose from
+    # 'googlefonts' or 'github-release'.
     # Required: False
     fetch-before: ''
 
-    # The 'username/repo' string if fetch-before is set to 'github-release' e.g `googlefonts/gulzar`.
+    # The 'username/repo' string if fetch-before is set to 'github-release'
+    # e.g `googlefonts/gulzar`.
     # Required: False
 
     # Font path to older fonts to compare against e.g `fonts_before/*.ttf.
