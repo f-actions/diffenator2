@@ -27,6 +27,8 @@ parser.add_argument("--path-before", default="none")
 parser.add_argument("--diffenator", default="false")
 parser.add_argument("--diffbrowsers", default="false")
 
+parser.add_argument("--user-wordlist", default=None)
+
 parser.add_argument("--out", default="screenshots")
 args = parser.parse_args()
 
@@ -69,4 +71,5 @@ run_diffing_tools(
     diffbrowsers=args.diffbrowsers,
     out=os.path.abspath(out),
     imgs=True,
+    user_wordlist=args.user_wordlist,
 )

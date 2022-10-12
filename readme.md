@@ -44,6 +44,10 @@ Test fonts using diffenator2.
     # Default: False
     run-diffbrowsers: bool
 
+    # Path to a user wordlist
+    # Required: False
+    user-wordlist: ''
+
 ```
 
 

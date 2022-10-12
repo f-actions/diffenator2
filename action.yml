@@ -3,19 +3,19 @@ name: 'Font browser tests'
 description: 'Test font rendering on different browsers'
 inputs:
   github-token:
-    description: 'github token'
+    description: 'Github token'
     required: true
   path:
-    description: 'path to fonts'
+    description: 'Path to fonts'
     required: true
   fetch-before:
     description: 'Fetch method for before fonts can be "googlefonts" or "github-release"'
     default: "none"
   repo:
-    description: "if fetch_before is github-release, specify username/repo e.g googlefonts/gulzar"
+    description: "If fetch_before is github-release, specify username/repo e.g googlefonts/gulzar"
     default: "none"
   path-before:
-    description: 'path to fonts before which reside inside the fetch dir'
+    description: 'Path to fonts before which reside inside the fetch dir'
     default: "none"
   out:
     description: 'Output dir'
@@ -27,6 +27,8 @@ inputs:
   run-diffbrowsers:
     description: 'Run diffbrowsers'
     default: false
+  user-wordlist:
+    description: 'Path to a wordlist file'
 runs:
   using: "composite"
   steps:
@@ -62,7 +64,8 @@ runs:
         --path-before ${{ inputs.path-before }} \
         --out ${{ inputs.out }} \
         --diffenator ${{ inputs.run-diffenator }} \
-        --diffbrowsers ${{ inputs.run-diffbrowsers }}
+        --diffbrowsers ${{ inputs.run-diffbrowsers }} \
+        --user-wordlist ${{ inputs.user-wordlist }}
     env:
       PYTHONIOENCODING: 'utf-8'
       PYTHONUTF8: '1'
