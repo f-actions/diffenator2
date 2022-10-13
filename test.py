@@ -27,7 +27,7 @@ parser.add_argument("--path-before", default="none")
 parser.add_argument("--diffenator", default="false")
 parser.add_argument("--diffbrowsers", default="false")
 
-parser.add_argument("--user-wordlist", default=None)
+parser.add_argument("--user-wordlist", default="none")
 
 parser.add_argument("--out", default="screenshots")
 args = parser.parse_args()
@@ -64,6 +64,7 @@ ttFonts_before = [TTFont(os.path.abspath(f)) for f in fonts_before]
 
 args.diffbrowsers = True if args.diffbrowsers == "true" else False
 args.diffenator = True if args.diffenator == "true" else False
+args.user_wordlist = None if args.user_wordlist == "none" else args.user_wordlist
 run_diffing_tools(
     ttFonts_before,
     ttFonts,

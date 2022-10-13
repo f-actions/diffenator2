@@ -29,6 +29,7 @@ inputs:
     default: false
   user-wordlist:
     description: 'Path to a wordlist file'
+    default: "none"
 runs:
   using: "composite"
   steps:
