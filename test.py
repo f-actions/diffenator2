@@ -28,9 +28,11 @@ parser.add_argument("--diffenator", default="false")
 parser.add_argument("--diffbrowsers", default="false")
 
 parser.add_argument("--user-wordlist", default="none")
+parser.add_argument("--filter-styles", default="none")
 
 parser.add_argument("--out", default="screenshots")
 args = parser.parse_args()
+args.filter_styles = None if args.filter_styles == "none" else args.filter_styles
 
 out = os.path.abspath(args.out)
 if not os.path.exists(out):
@@ -43,7 +45,7 @@ out = os.path.join(out, family_name.replace(" ", "-"))
 
 # User just wants proofs
 if args.path_before == "none":
-    run_proofing_tools(ttFonts, out=out, imgs=True)
+    run_proofing_tools(ttFonts, out=out, imgs=True, filter_styles=args.filter_styles)
     sys.exit(0)
 
 # get fonts before
@@ -72,4 +74,5 @@ run_diffing_tools(
     out=os.path.abspath(out),
     imgs=True,
     user_wordlist=args.user_wordlist,
+    filter_styles=args.filter_styles,
 )

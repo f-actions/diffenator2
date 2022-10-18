@@ -30,6 +30,9 @@ inputs:
   user-wordlist:
     description: 'Path to a wordlist file'
     default: "none"
+  filter-styles:
+    description: 'Styles to display'
+    default: "none"
 runs:
   using: "composite"
   steps:
@@ -66,7 +69,8 @@ runs:
         --out ${{ inputs.out }} \
         --diffenator ${{ inputs.run-diffenator }} \
         --diffbrowsers ${{ inputs.run-diffbrowsers }} \
-        --user-wordlist ${{ inputs.user-wordlist }}
+        --user-wordlist ${{ inputs.user-wordlist }} \
+        --filter-styles '${{ inputs.filter-styles }}'
     env:
       PYTHONIOENCODING: 'utf-8'
       PYTHONUTF8: '1'
