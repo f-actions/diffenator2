@@ -65,7 +65,7 @@ runs:
         --path ${{ inputs.path }} \
         --fetch-before ${{ inputs.fetch-before }} \
         --repo ${{ inputs.repo }} \
-        --path-before ${{ inputs.path-before }} \
+        --path-before '${{ inputs.path-before }}' \
         --out ${{ inputs.out }} \
         --diffenator ${{ inputs.run-diffenator }} \
         --diffbrowsers ${{ inputs.run-diffbrowsers }} \
