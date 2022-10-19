@@ -22,7 +22,7 @@ parser.add_argument(
 )
 parser.add_argument("--repo", default="none")
 
-parser.add_argument("--path-before", default="none", nargs="+")
+parser.add_argument("--path-before", default="none")
 
 parser.add_argument("--diffenator", default="false")
 parser.add_argument("--diffbrowsers", default="false")
@@ -61,7 +61,8 @@ elif args.fetch_before == "github-release":
     files_before = download_latest_github_release(
         user, repo, "files_before", args.github_token
     )
-ttFonts_before = [TTFont(os.path.abspath(f)) for f in args.path_before]
+fonts_before = glob(os.path.join("files_before", args.path_before))
+ttFonts_before = [TTFont(os.path.abspath(f)) for f in fonts_before]
 
 args.diffbrowsers = True if args.diffbrowsers == "true" else False
 args.diffenator = True if args.diffenator == "true" else False
