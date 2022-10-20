@@ -5,7 +5,7 @@ Test fonts using diffenator2.
 ## Usage
 
 ```YAML
-- uses: googlefonts/test-fonts-action@main
+- uses: f-actions/diffenator2@main
   with:
 
     # Personal access token (PAT). This is required in order to download
@@ -48,6 +48,12 @@ Test fonts using diffenator2.
     # Required: False
     user-wordlist: ''
 
+
+    # Only test the following styles. Regex strings accepted e.g "Regular|Bold|.*Italic"
+    # Required: False
+    filter-styles: ''
+
+
 ```
 
 
@@ -65,7 +71,7 @@ jobs:
     name: Check fonts on different browsers
     steps:
         - uses: actions/checkout@v2
-        - uses: m4rc1e/font-browser-tests-action@latest
+        - uses: f-actions/diffenator2@main
           with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             path: "./fonts/*.ttf"
@@ -82,7 +88,7 @@ jobs:
     name: Check fonts on different browsers
     steps:
         - uses: actions/checkout@v2
-        - uses: m4rc1e/font-browser-tests-action@latest
+        - uses: f-actions/diffenator2@main
           with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             path: "./fonts/*.ttf"
@@ -92,7 +98,7 @@ jobs:
             run-diffbrowsers: true
 ```
 
-Diff fonts against a latest upstream release:
+Diff fonts against a latest upstream release but only test Regular and Italic:
 
 ```YAML
 on: [push]
@@ -103,7 +109,7 @@ jobs:
     name: Check fonts on different browsers
     steps:
         - uses: actions/checkout@v2
-        - uses: m4rc1e/font-browser-tests-action@latest
+        - uses: f-actions/diffenator2@main
           with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             path: "./gulzar/fonts/*.ttf"
@@ -112,6 +118,7 @@ jobs:
             path-before: "*.ttf"
             run-diffenator: true
             run-diffbrowsers: true
+            filter-styles: "Regular|Italic"
 ```
 
 Generating screenshots on Mac, Win and Linux
@@ -135,7 +142,7 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-      - uses: m4rc1e/font-browser-tests-action@latest
+      - uses: f-actions/diffenator2@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           paths: "./fonts"
