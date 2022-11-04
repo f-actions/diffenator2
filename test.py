@@ -5,7 +5,8 @@ import os
 from fontTools.ttLib import TTFont
 from glob import glob
 import argparse
-from diffenator import run_proofing_tools, run_diffing_tools
+import ninja
+from diffenator import ninja_proof, ninja_diff
 from diffenator.utils import (
     download_google_fonts_family,
     download_latest_github_release,
@@ -45,7 +46,8 @@ out = os.path.join(out, family_name.replace(" ", "-"))
 
 # User just wants proofs
 if args.path_before == "none":
-    run_proofing_tools(ttFonts, out=out, imgs=True, filter_styles=args.filter_styles)
+    ninja_proof(ttFonts, out=out, imgs=True, filter_styles=args.filter_styles)
+    ninja._program("ninja", [])
     sys.exit(0)
 
 # get fonts before
@@ -67,7 +69,7 @@ ttFonts_before = [TTFont(os.path.abspath(f)) for f in fonts_before]
 args.diffbrowsers = True if args.diffbrowsers == "true" else False
 args.diffenator = True if args.diffenator == "true" else False
 args.user_wordlist = None if args.user_wordlist == "none" else args.user_wordlist
-run_diffing_tools(
+ninja_diff(
     ttFonts_before,
     ttFonts,
     diffenator=args.diffenator,
@@ -77,3 +79,4 @@ run_diffing_tools(
     user_wordlist=args.user_wordlist,
     filter_styles=args.filter_styles,
 )
+ninja._program("ninja", [])

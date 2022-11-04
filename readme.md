@@ -29,6 +29,7 @@ Test fonts using diffenator2.
     repo: ''
 
     # Font path to older fonts to compare against e.g `fonts_before/*.ttf.
+    # Reauired: False
     path-before: ''
 
     # Output directory
@@ -47,7 +48,6 @@ Test fonts using diffenator2.
     # Path to a user wordlist
     # Required: False
     user-wordlist: ''
-
 
     # Only test the following styles. Regex strings accepted e.g "Regular|Bold|.*Italic"
     # Required: False
