@@ -29,7 +29,7 @@ Test fonts using diffenator2.
     repo: ''
 
     # Font path to older fonts to compare against e.g `fonts_before/*.ttf.
-    # Reauired: False
+    # Required: False
     path-before: ''
 
     # Output directory
@@ -52,6 +52,10 @@ Test fonts using diffenator2.
     # Only test the following styles. Regex strings accepted e.g "Regular|Bold|.*Italic"
     # Required: False
     filter-styles: ''
+
+    # Set font point size for diffbrowsers
+    # Required False
+    pt-size: int
 
 
 ```
@@ -121,7 +125,7 @@ jobs:
             filter-styles: "Regular|Italic"
 ```
 
-Generating screenshots on Mac, Win and Linux
+Generating screenshots on Mac, Win and Linux with a 14pt font size
 
 ```YAML
 name: Test screenshots
@@ -149,6 +153,7 @@ jobs:
           fonts_before: "googlefonts"
           run-diffenator: false
           run-diffbrowsers: true
+          pt-size: 14
 ```
 
 For a complete project see https://github.com/m4rc1e/mavenproFont/blob/main/.github/workflows/build.yaml. This project will first build the fonts and then compare them against the latest release on Google Fonts. It uses a platform matrix to render browser screenshots for Win, Mac and Linux. It also runs diffenator on the latest Linux as a seperate job. This setup should be suitable for most font projects.

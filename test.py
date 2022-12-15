@@ -31,6 +31,8 @@ parser.add_argument("--diffbrowsers", default="false")
 parser.add_argument("--user-wordlist", default="none")
 parser.add_argument("--filter-styles", default="none")
 
+parser.add_argument("--pt-size", "-pt", type=int, default=20)
+
 parser.add_argument("--out", default="screenshots")
 args = parser.parse_args()
 args.filter_styles = None if args.filter_styles == "none" else args.filter_styles
@@ -46,8 +48,13 @@ out = os.path.join(out, family_name.replace(" ", "-"))
 
 # User just wants proofs
 if args.path_before == "none":
-    ninja_proof(ttFonts, out=out, imgs=True, filter_styles=args.filter_styles)
-    ninja._program("ninja", [])
+    ninja_proof(
+        ttFonts,
+        out=out,
+        imgs=True,
+        filter_styles=args.filter_styles,
+        pt_size=args.pt_size
+    )
     sys.exit(0)
 
 # get fonts before
@@ -78,5 +85,5 @@ ninja_diff(
     imgs=True,
     user_wordlist=args.user_wordlist,
     filter_styles=args.filter_styles,
+    pt_size=args.pt_size,
 )
-ninja._program("ninja", [])
