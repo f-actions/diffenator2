@@ -6,8 +6,8 @@ from fontTools.ttLib import TTFont
 from glob import glob
 import argparse
 import ninja
-from diffenator import ninja_proof, ninja_diff
-from diffenator.utils import (
+from diffenator2 import ninja_proof, ninja_diff
+from diffenator2.utils import (
     download_google_fonts_family,
     download_latest_github_release,
 )
