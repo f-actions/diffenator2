@@ -36,6 +36,9 @@ inputs:
   pt-size:
     description: 'font pt size for diffbrowsers'
     default: "20"
+  threshold:
+    description: 'Show changes over this percentage of changed pixels'
+    default: "20"
 runs:
   using: "composite"
   steps:

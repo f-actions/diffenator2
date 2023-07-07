@@ -57,6 +57,9 @@ Test fonts using diffenator2.
     # Required False
     pt-size: int
 
+    # Show changes over this percentage of changed pixels
+    # Required: False (default 0.9)
+    threshold: float
 
 ```
 

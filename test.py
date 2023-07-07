@@ -34,6 +34,7 @@ parser.add_argument("--filter-styles", default="none")
 parser.add_argument("--pt-size", "-pt", type=int, default=20)
 
 parser.add_argument("--out", default="screenshots")
+parser.add_argument("--threshold", default=0.90, type=float)
 args = parser.parse_args()
 args.filter_styles = None if args.filter_styles == "none" else args.filter_styles
 
@@ -86,4 +87,5 @@ ninja_diff(
     user_wordlist=args.user_wordlist,
     filter_styles=args.filter_styles,
     pt_size=args.pt_size,
+    threshold=args.threshold,
 )
