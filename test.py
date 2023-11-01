@@ -5,6 +5,7 @@ import os
 from glob import glob
 import argparse
 import ninja
+from fontTools.ttLib import TTFont
 from diffenator2 import ninja_proof, ninja_diff
 from diffenator2.font import DFont
 from diffenator2.utils import (
@@ -43,14 +44,14 @@ if not os.path.exists(out):
     os.mkdir(out)
 
 
-dfonts = [DFont(os.path.abspath(f)) for f in args.path]
-family_name = dfonts[0].family_name
+fonts = [os.path.abspath(f) for f in args.path]
+family_name = TTFont(fonts[0])["name"].getBestFamilyName()
 out = os.path.join(out, family_name.replace(" ", "-"))
 
 # User just wants proofs
 if args.path_before == "none":
     ninja_proof(
-        dfonts,
+        fonts,
         out=out,
         imgs=True,
         filter_styles=args.filter_styles,
@@ -72,14 +73,14 @@ elif args.fetch_before == "github-release":
         user, repo, "files_before", args.github_token
     )
 fonts_before = glob(os.path.join("files_before", args.path_before))
-dfonts_before = [DFont(os.path.abspath(f)) for f in fonts_before]
+fonts_before = [os.path.abspath(f) for f in fonts_before]
 
 args.diffbrowsers = True if args.diffbrowsers == "true" else False
 args.diffenator = True if args.diffenator == "true" else False
 args.user_wordlist = None if args.user_wordlist == "none" else args.user_wordlist
 ninja_diff(
-    dfonts_before,
-    dfonts,
+    fonts_before,
+    fonts,
     diffenator=args.diffenator,
     diffbrowsers=args.diffbrowsers,
     out=os.path.abspath(out),
