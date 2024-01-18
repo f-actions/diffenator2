@@ -60,7 +60,7 @@ runs:
   - name: Setup Firefox Driver
     uses: browser-actions/setup-geckodriver@latest
     with:
-      token: ${{ secrets.GITHUB_TOKEN }}
+      token: ${{ inputs.github-token }}
 
   - name: Gen Screenshots
     run: |
