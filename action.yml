@@ -84,7 +84,7 @@ runs:
     shell: bash
 
   - name: Create Artifacts
-    uses: actions/upload-artifact@v2
+    uses: actions/upload-artifact@v4
     with:
       name: font-tests
       path: ${{ inputs.out }}
