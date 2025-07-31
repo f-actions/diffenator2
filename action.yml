@@ -48,6 +48,7 @@ runs:
       python-version: 3.9
   - name: Install packages
     run: |
+      sudo apt-get update && sudo apt-get install libegl1 libegl-dev
       pip install git+https://github.com/googlefonts/diffenator2
     shell: bash
   - name: Setup Chrome
